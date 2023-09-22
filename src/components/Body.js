@@ -1,9 +1,10 @@
 import RestaurantCard from "./Restaurant";
-import { restaurantList } from "../config";
+import { API_URL } from "../config";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useGetRestaurantData from "../Hooks/useGetRestaurantData";
 
 function filterData(searchText, restaurant) {
   const filteredData = restaurant.filter((elem) => {
@@ -14,40 +15,10 @@ function filterData(searchText, restaurant) {
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
-  const [restaurants, setRestaurant] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    getRestarants();
-    console.log("useEffect");
-  }, []);
-
-  async function getRestarants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0734262&lng=72.626571&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING#"
-    );
-    const json = await data.json();
-
-    async function checkJsonData(json) {
-      const cards = json?.data?.cards;
-      console.log(cards);
-      if (cards) {
-        console.log(cards);
-        for (const card of cards) {
-          const checkData =
-            card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-          if (checkData !== undefined) {
-            return checkData;
-          }
-        }
-      }
-    }
-    const resData = await checkJsonData(json);
-    console.log(resData);
-    setFilteredRestaurants(resData);
-    setRestaurant(resData);
-  }
+  const [restaurants, filteredRestaurants, setFilteredRestaurants] =
+    useGetRestaurantData(API_URL);
 
   const searchData = (searchText, restaurants) => {
     const data = filterData(searchText, restaurants);
@@ -59,8 +30,6 @@ const Body = () => {
       setFilteredRestaurants(data);
     }
   };
-
-  console.log("renderrrrrrrrrrrrrrrr");
 
   return (
     <>

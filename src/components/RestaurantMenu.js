@@ -1,45 +1,24 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { IMG_CDN_URL } from "../config";
+import useRestaurantMenu from "../Hooks/useRestaurantMenu";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
 
-  const [menu, setMenu] = useState([]);
-  const [resDetail, setResDetail] = useState([]);
-
-  useEffect(() => {
-    getRestaurantMenu();
-  }, []);
-
-  async function getRestaurantMenu() {
-    //data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0734262&lng=72.626571&restaurantId=" +
-        id +
-        "&catalog_qa=undefined&submitAction=ENTER"
-    );
-    const json = await data.json();
-    console.log(
-      json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
-        .itemCards
-    );
-    setMenu(
-      json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card
-        .itemCards
-    );
-    console.log(json.data.cards);
-    setResDetail(json.data.cards[0].card.card);
-    console.log(resDetail);
-    //.[0].card.info.name
-  }
-  console.log(id);
+  const [menu, resDetail] = useRestaurantMenu(id);
 
   return (
     <div className="menu-page">
       <div>
         <div>{resDetail?.info?.name}</div>
-        <img src={IMG_CDN_URL + resDetail?.info?.cloudinaryImageId} />
+        <img
+          src={
+            resDetail?.info?.cloudinaryImageId
+              ? IMG_CDN_URL + resDetail?.info?.cloudinaryImageId
+              : null
+          }
+        />
       </div>
       <div className="menu">
         <ul>
