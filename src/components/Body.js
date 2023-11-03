@@ -33,8 +33,8 @@ const Body = () => {
 
   return (
     <>
-      <div className="search">
-        <input
+      <div className="flex justify-center p-2 ">
+        <input className="h-9  border-black border-solid shadow-md rounded-lg p-2 m-2"
           type="text"
           placeholder="Search"
           value={searchText}
@@ -47,7 +47,7 @@ const Body = () => {
           }}
         ></input>
         <button
-          className="search-btn"
+          className="rounded-lg bg-slate-100 pl-6 pr-6 w-24 h-9 mt-2 ml-2 shadow-md"
           onClick={() => {
             searchData(searchText, restaurants);
           }}
@@ -59,7 +59,7 @@ const Body = () => {
       {restaurants?.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="container">
+        <div className="flex flex-wrap justify-center">
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link

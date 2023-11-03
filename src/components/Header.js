@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="flex justify-between border-b border-yellow-200 shadow-md bg-slate-100">
       <Logo />
       <NavItems />
     </div>
