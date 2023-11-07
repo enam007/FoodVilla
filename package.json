@@ -6,9 +6,10 @@
   "scripts": {
     "test": "jest",
     "start": "parcel build index.html --public-url",
+    "build": "parcel build index.html --public-url ./",
     "predeploy":"npm run build",
     "deploy" : "gh-pages -d dist",
-    "build": "parcel build index.html"  
+    
   },
   "author": "Aamir",
   "license": "ISC",
