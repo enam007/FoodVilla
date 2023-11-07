@@ -22,12 +22,12 @@ const App = () => {
 
 const appRoute = createBrowserRouter([
   {
-    path: "/",
+    path: "/FoodVilla",
     element: <App />,
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Body />,
       },
       {
