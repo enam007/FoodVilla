@@ -1,14 +1,18 @@
 {
+  "homepage":"https://enam007.github.io/FoodVilla",
   "name": "foodvilla",
   "version": "1.0.0",
   "description": "food ordering App",
   "scripts": {
     "test": "jest",
-    "start": "npx parcel index.html --host 192.168.185.51"
+    "start": "npx parcel index.html",
+    "predeploy":"npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "author": "Aamir",
   "license": "ISC",
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "parcel": "^2.9.3",
     "postcss": "^8.4.31",
     "process": "^0.11.10",
