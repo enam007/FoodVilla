@@ -31,15 +31,15 @@ const appRoute = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
       {
-        path: "/restaurant/:id",
+        path: "restaurant/:id",
         element: <RestaurantMenu />,
       },
     ],
