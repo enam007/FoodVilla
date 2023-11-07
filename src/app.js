@@ -1,11 +1,11 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/Header.js";
-import Body from "./components/Body.js";
-import Footer from "./components/Footer.js";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import Footer from "./components/Footer";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Error from "./components/Error.js";
+import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "../index.css";
@@ -13,9 +13,11 @@ import "../index.css";
 const App = () => {
   return (
     <StrictMode>
+       <RouterProvider router={appRoute}> 
       <Header />
       <Outlet />
       <Footer />
+      </RouterProvider>
     </StrictMode>
   );
 };
@@ -27,7 +29,7 @@ const appRoute = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Body />,
       },
       {
