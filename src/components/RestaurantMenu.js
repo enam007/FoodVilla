@@ -1,34 +1,25 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { IMG_CDN_URL } from "../config";
-import useRestaurantMenu from "../Hooks/useRestaurantMenu";
+import { useState } from "react";
 
-const RestaurantMenu = () => {
-  const { id } = useParams();
+const RestaurantMenu = ({ itemCards }) => {
+  const [showMenu, setShowMenu] = useState(false);
 
-  const [menu, resDetail] = useRestaurantMenu(id);
-
+  const handleClick = () => {
+    setShowMenu(!showMenu);
+  };
   return (
-    <div className="menu-page">
+    <>
       <div>
-        <div>{resDetail?.info?.name}</div>
-        <img
-          src={
-            resDetail?.info?.cloudinaryImageId
-              ? IMG_CDN_URL + resDetail?.info?.cloudinaryImageId
-              : null
-          }
-        />
+        <button onClick={handleClick}>{showMenu ? "close" : "open"}</button>
+        {showMenu && (
+          <ul>
+            {itemCards.map((item) => {
+              //console.log(itemCards);
+              return <li>{item.card.info.name}</li>;
+            })}
+          </ul>
+        )}
       </div>
-      <div className="menu">
-        <ul>
-          {menu.map((m) => (
-            <li key={m?.card?.info?.id}>{m?.card?.info?.name}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };
-
 export default RestaurantMenu;
