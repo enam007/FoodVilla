@@ -1,15 +1,15 @@
 {
-  "homepage":"https://enam007.github.io/FoodVilla",
+  "homepage": "https://enam007.github.io/FoodVilla",
   "name": "foodvilla",
   "version": "1.0.0",
   "description": "food ordering App",
   "scripts": {
     "test": "jest",
+    "dev": "npx parcel index.html",
     "start": "if exist dist rmdir /s /q dist && parcel build index.html --public-url",
     "build": "if exist dist rmdir /s /q dist && parcel build index.html --public-url ./",
-    "predeploy":"npm run build",
-    "deploy" : "gh-pages -d dist"
-    
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Aamir",
   "license": "ISC",

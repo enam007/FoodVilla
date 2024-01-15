@@ -1,38 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; // useGetRes
 const useGetRestaurantData = (url) => {
   const [restaurants, setRestaurant] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect");
     getRestarants();
-    console.log("useEffect");
   }, []);
 
   async function getRestarants() {
-    console.log("useEffect");
-    const data = await fetch(url);
-    const json = await data.json();
-    console.log(json);
+    try {
+      const data = await fetch(url);
+      const json = await data.json();
+      const resData = await checkJsonData(json);
+      console.log(resData);
+      setRestaurant(resData);
+      setFilteredRestaurants(resData);
+    } catch (error) {
+      console.error("API ERROR: ", error);
+    }
+
+    //console.log(json);
 
     async function checkJsonData(json) {
-      const cards = json?.data?.cards;
-      console.log(cards);
-      if (cards) {
-        console.log(cards);
+      try {
+        const cards = json?.data.cards;
         for (const card of cards) {
-          const checkData =
+          const restaurantData =
+            card?.card?.card?.id === "restaurant_grid_listing" &&
             card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-          if (checkData !== undefined) {
-            return checkData;
+          if (restaurantData) {
+            console.log(restaurantData);
+            return restaurantData;
           }
         }
+      } catch (error) {
+        console.error(error);
       }
     }
-    const resData = await checkJsonData(json);
-    console.log(resData);
-    setRestaurant(resData);
-    setFilteredRestaurants(resData);
   }
   return [restaurants, filteredRestaurants, setFilteredRestaurants];
 };

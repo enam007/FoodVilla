@@ -34,7 +34,8 @@ const Body = () => {
   return (
     <>
       <div className="flex justify-center p-2 ">
-        <input className="h-9  border-black border-solid shadow-md rounded-lg p-2 m-2"
+        <input
+          className="h-9  border-black border-solid shadow-md rounded-lg p-2 m-2"
           type="text"
           placeholder="Search"
           value={searchText}
@@ -63,7 +64,7 @@ const Body = () => {
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
-                to={"/FoodVilla/restaurant/" + restaurant.info.id}
+                to={"/restaurant/" + restaurant.info.id}
                 key={restaurant.info.id}
               >
                 <RestaurantCard {...restaurant.info} />

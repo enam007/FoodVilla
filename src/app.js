@@ -6,7 +6,7 @@ import Footer from "./components/Footer.js";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error.js";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantDetail from "./components/RestaurantDetail.js";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "../index.css";
 
@@ -22,25 +22,25 @@ const App = () => {
 
 const appRoute = createBrowserRouter([
   {
-    path: "/FoodVilla",
+    path: "/",
     element: <App />,
     errorElement: <Error />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <Body />,
       },
       {
-        path: "about",
+        path: "/about",
         element: <About />,
       },
       {
-        path: "contact",
+        path: "/contact",
         element: <Contact />,
       },
       {
-        path: "restaurant/:id",
-        element: <RestaurantMenu />,
+        path: "/restaurant/:id",
+        element: <RestaurantDetail />,
       },
     ],
   },
