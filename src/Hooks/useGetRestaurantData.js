@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; // useGetRes
 const useGetRestaurantData = (url) => {
   const [restaurants, setRestaurant] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
