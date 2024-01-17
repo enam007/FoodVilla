@@ -58,7 +58,9 @@ const Body = () => {
       </div>
       {errorMessage && <div className="error-container">{errorMessage}</div>}
       {restaurants?.length === 0 ? (
-        <Shimmer />
+        <div className="flex flex-wrap justify-center">
+          <Shimmer />
+        </div>
       ) : (
         <div className="flex flex-wrap justify-center">
           {filteredRestaurants.map((restaurant) => {

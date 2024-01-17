@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IMG_CDN_URL } from "../config.js";
 
 const RestaurantMenu = ({ itemCards }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -8,15 +9,31 @@ const RestaurantMenu = ({ itemCards }) => {
   };
   return (
     <>
-      <div>
-        <button onClick={handleClick}>{showMenu ? "close" : "open"}</button>
+      <div className="">
+        <button className="" onClick={handleClick}>
+          {showMenu ? "close" : "open"}
+        </button>
         {showMenu && (
-          <ul>
+          <div>
             {itemCards.map((item) => {
-              //console.log(itemCards);
-              return <li>{item.card.info.name}</li>;
+              console.log("item", item);
+              return (
+                <div>
+                  <div>
+                    <div>{item.card.info.name}</div>
+                    <div>{`₹ ${item.card.info.price / 100}`}</div>
+                    <div>{item.card.info.description}</div>
+                  </div>
+                  <div>
+                    <img
+                      className="h-24"
+                      src={IMG_CDN_URL + item.card.info.imageId}
+                    />
+                  </div>
+                </div>
+              );
             })}
-          </ul>
+          </div>
         )}
       </div>
     </>

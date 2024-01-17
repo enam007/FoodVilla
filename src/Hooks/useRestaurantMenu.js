@@ -4,9 +4,10 @@ import useGetRestaurantData from "./useGetRestaurantData";
 
 const useRestaurantMenu = (id) => {
   const [menu, setMenu] = useState([]);
-  const [resDetail, setResDetail] = useState([]);
+  const [resDetail, setResDetail] = useState({});
 
   useEffect(() => {
+    console.log("in useEffect");
     getRestaurantMenu();
   }, []);
 
@@ -21,8 +22,8 @@ const useRestaurantMenu = (id) => {
 
       setMenu(menuData);
       setResDetail(restaurantDetail);
-      console.log(menu);
-      console.log(resDetail);
+      console.log("menu", menu);
+      console.log("resDetail", resDetail);
     } catch (error) {}
     async function getMenuData(json) {
       const cards = json?.data?.cards;
