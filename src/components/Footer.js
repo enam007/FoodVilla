@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="sticky bottom-0 text-center">
       Made with <span className="heart"> ❤</span>
     </div>
   );

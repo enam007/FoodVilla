@@ -9,9 +9,14 @@ const RestaurantDetail = () => {
   const { id } = useParams();
   console.log(id);
   const [menu, resDetail] = useRestaurantMenu(id);
+  const [openStates, setOpenStates] = useState(
+    new Array(menu.length).fill(false)
+  );
 
-  const handleClick = () => {
-    setShowMenu(!showMenu);
+  const handleClick = (index) => {
+    const newOpenStates = [...openStates];
+    newOpenStates[index] = !newOpenStates[index];
+    setOpenStates(newOpenStates);
   };
   return (
     <div className="mx-auto pt-6 mt-4 w-3/4">
@@ -53,12 +58,61 @@ const RestaurantDetail = () => {
           <div className="pt-2 mt-2">
             <ul>
               {menu &&
-                menu.map((m) => {
+                menu.map((m, index) => {
                   console.log(m.card.card.itemCards);
                   return (
-                    <div>
-                      <li>{m.card.card.title}</li>
-                      <RestaurantMenu itemCards={m.card.card.itemCards} />
+                    <div className="p-2 m-2 border-b-2 transform transition-transform hover:scale-105">
+                      <li
+                        onClick={() => {
+                          handleClick(index);
+                        }}
+                        className="flex justify-between text-xl font-bold"
+                      >
+                        {m.card.card.title}
+                        <button
+                          className=""
+                          onClick={() => {
+                            handleClick(index);
+                          }}
+                        >
+                          {!openStates[index] ? (
+                            <svg
+                              class="w-3 h-3 text-gray-800 dark:text-white"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 14 8"
+                            >
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              class="w-3 h-3 text-gray-800 dark:text-white"
+                              aria-hidden="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 14 8"
+                            >
+                              <path
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"
+                              />
+                            </svg>
+                          )}
+                        </button>
+                      </li>
+                      {openStates[index] && (
+                        <RestaurantMenu itemCards={m.card.card.itemCards} />
+                      )}
                     </div>
                   );
                 })}
