@@ -17,9 +17,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <StrictMode>
-        <Header />
-        <Outlet />
-        <Footer />
+        <RouterProvider router={appRoute}>
+          <Header />
+          <Outlet />
+          <Footer />
+        </RouterProvider>
       </StrictMode>
     </Provider>
   );
@@ -27,28 +29,28 @@ const App = () => {
 
 const appRoute = createBrowserRouter([
   {
-    path: "/",
+    path: "/FoodVilla",
     element: <App />,
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Body />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
       {
-        path: "/restaurant/:id",
+        path: "restaurant/:id",
         element: <RestaurantDetail />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <Cart />,
       },
     ],
