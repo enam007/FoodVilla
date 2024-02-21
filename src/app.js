@@ -17,11 +17,9 @@ const App = () => {
   return (
     <Provider store={store}>
       <StrictMode>
-        <RouterProvider router={appRoute}>
-          <Header />
-          <Outlet />
-          <Footer />
-        </RouterProvider>
+        <Header />
+        <Outlet />
+        <Footer />
       </StrictMode>
     </Provider>
   );
@@ -29,7 +27,7 @@ const App = () => {
 
 const appRoute = createBrowserRouter([
   {
-    path: "/",
+    path: "/FoodVilla",
     element: <App />,
     errorElement: <Error />,
     children: [

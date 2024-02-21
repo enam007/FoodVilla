@@ -24,7 +24,7 @@ const NavItems = () => {
         </li>
         <li>
           {" "}
-          <Link className="p-2 m-2" to="/cart">
+          <Link className="p-2 m-2" to="/FoodVilla/cart">
             Cart {cartItems.length}
           </Link>
         </li>
